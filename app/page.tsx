@@ -1,101 +1,137 @@
-import Image from "next/image";
+import Navbar from '../components/navbar/Navbar';
+import WorkshopCard from '../components/workshopcard/WorkshopCard';
+
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    
+    <div >
+      <Navbar />
+      <main className="pt-24">
+        <div className="flex flex-col items-center">
+          <div className="flex items-center">
+            <img src="/images/logo.png" alt="logo" className="pt-0 w-24 h-24"/>
+            <div className="flex flex-col">
+              <p className="mx-2 pt-2 text-base">YP Leathercraft</p>
+              <p className="mx-2 pt-2 text-xs">Handmade Leather Goods</p>
+            </div>
+          </div>
         </div>
+        <div className="relative mt-8">
+          <img src="/images/homepage.jpg" alt="Banner" className="mx-auto w-full h-96 object-cover"/>
+          <p className="absolute inset-0 flex items-center justify-center text-white text-2xl font-bold bg-black bg-opacity-50">
+          Learn, Craft, and Master Leatherwork
+          </p>
+        </div>
+
+        <section className="py-10 mx-40">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl mb-4">Leathercraft Workshops</h2>
+            <p className="mb-4">Join our workshops and craft your own unique leather items with expert guidance.</p>
+          </div>
+          <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <WorkshopCard 
+            title="Card Holder" 
+            image="/images/cardholder.jpg" 
+            description="Craft your own leather cardholder and learn essential leatherworking techniques."
+            duration='1 Hours'
+            materials='Yes'
+            price='$20 CAD'
+            />
+            <WorkshopCard 
+            title="Bag Charm" 
+            image="/images/bagcharm.jpg" 
+            description="Design your own stylish leather bag charm—perfect for personalizing your favorite bag or giving as a unique gift."
+            duration='1 Hours'
+            materials='Yes'
+            price='$20 CAD'
+            />
+            <WorkshopCard 
+            title="Key Case" 
+            image="/images/keycase.jpg" 
+            description="Craft a durable, stylish leather key case to keep your keys organized and scratch-free. Learn basic leatherworking skills in a hands-on session."
+            duration='1 Hours'
+            materials='Yes'
+            price='$20 CAD'
+            />
+          </div>
+        </section>
+
+        <section className="py-10 mx-40 bg-white">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl mb-4">Our Location</h2>
+            <p >In-Person Class</p>
+            <p >Please book appointment if visiting studio</p>
+            <p className='mb-4'>4 Deerfield Dr, Nepean, ON K2G 3R6</p>
+            {/* Embed Google Map */}
+            <div className="overflow-hidden rounded-lg shadow-lg">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5607.416881236844!2d-75.75563632392038!3d45.354697471072356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce06e0520aa9ab%3A0x7dd630fc03ab4e5e!2s4%20Deerfield%20Dr%2C%20Nepean%2C%20ON%20K2G%203R6!5e0!3m2!1sen!2sca!4v1730420355432!5m2!1sen!2sca"
+                width="100%" 
+                height="450" 
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy">
+              </iframe>
+
+            </div>
+            
+          </div>
+        </section>
+        
+        <section className="py-10 flex items-center justify-center min-h-screen bg-white">
+          <div className="w-full max-w-2xl px-6 mx-4 text-center">
+            <h2 className="text-3xl mb-4">Contact Us</h2>
+            <p>Reach out to us and let us know if there is anything we can do for you.</p>
+            <form className="mt-6">
+              <div className="mb-4 flex flex-col items-start">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Your Name"
+                />
+              </div>
+
+              <div className="mb-4 flex flex-col items-start">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Your Email"
+                />
+              </div>
+
+              <div className="mb-4 flex flex-col items-start">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+                <textarea
+                  id="message"
+                  rows={4}
+                  required
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Your Message"
+                ></textarea>
+              </div>
+
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="mt-4 px-6 py-2 bg-[#42563b] text-white rounded-md hover:bg-[#5a7853] transition"
+                >
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
