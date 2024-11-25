@@ -1,6 +1,8 @@
-import Navbar from '../components/navbar/Navbar';
-import WorkshopCard from '../components/workshopcard/WorkshopCard';
+'use client';
 
+import Navbar from '../components/navbar/Navbar';
+import WorkshopCard from '../components/card/WorkshopCard';
+import { createContact } from '@/utils/actions';
 
 export default function Home() {
   return (
@@ -11,7 +13,7 @@ export default function Home() {
       <main className="pt-24">
         <div className="flex flex-col items-center">
           <div className="flex items-center">
-            <img src="/images/logo.png" alt="logo" className="pt-0 w-24 h-24"/>
+            <img src="/images/logo.jpg" alt="logo" className="pt-0 w-24 h-24"/>
             <div className="flex flex-col">
               <p className="mx-2 pt-2 text-base">YP Leathercraft</p>
               <p className="mx-2 pt-2 text-xs">Handmade Leather Goods</p>
@@ -25,35 +27,95 @@ export default function Home() {
           </p>
         </div>
 
-        <section className="py-10 mx-40">
+        <section className="py-10 mx-20">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl mb-4">Leathercraft Workshops</h2>
             <p className="mb-4">Join our workshops and craft your own unique leather items with expert guidance.</p>
           </div>
-          <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
             <WorkshopCard 
-            title="Card Holder" 
-            image="/images/cardholder.jpg" 
-            description="Craft your own leather cardholder and learn essential leatherworking techniques."
-            duration='1 Hours'
-            materials='Yes'
+            title="Wristband" 
+            image="/images/wristband1.jpeg" 
+            difficulty="Beginner"
             price='$20 CAD'
+            url='/'
             />
             <WorkshopCard 
-            title="Bag Charm" 
-            image="/images/bagcharm.jpg" 
-            description="Design your own stylish leather bag charm—perfect for personalizing your favorite bag or giving as a unique gift."
-            duration='1 Hours'
-            materials='Yes'
+            title="Key Chain" 
+            image="/images/keychain_a1.jpeg" 
+            difficulty='Intermediate'
             price='$20 CAD'
+            url='/'
             />
             <WorkshopCard 
-            title="Key Case" 
-            image="/images/keycase.jpg" 
-            description="Craft a durable, stylish leather key case to keep your keys organized and scratch-free. Learn basic leatherworking skills in a hands-on session."
-            duration='1 Hours'
-            materials='Yes'
+            title="Key Chain with Photo" 
+            image="/images/keychain_d1.jpeg" 
+            difficulty='Intermediate'
+            price='$40 CAD'
+            url='/'
+            />
+            <WorkshopCard 
+            title="Key Holder" 
+            image="/images/keyholder.jpeg" 
+            difficulty='Advanced'
             price='$20 CAD'
+            url='/'
+            />
+            <WorkshopCard 
+            title="AirPods" 
+            image="/images/airpods_a1.jpeg" 
+            difficulty='Advanced'
+            price='$28 CAD'
+            url='/'
+            />
+            <WorkshopCard 
+            title="AirTag" 
+            image="/images/airtag_a1.jpeg" 
+            difficulty='Advanced'
+            price='$38 CAD'
+            url='/'
+            />
+            <WorkshopCard 
+            title="Glass Case" 
+            image="/images/glasscase1.jpeg" 
+            difficulty='Advanced'
+            price='$96 CAD'
+            url='/'
+            />
+            <WorkshopCard 
+            title="Ipad Case" 
+            image="/images/ipadcase1.jpeg" 
+            difficulty='Advanced'
+            price='$149 CAD'
+            url='/'
+            />
+            <WorkshopCard 
+            title="Card Holder A" 
+            image="/images/cardholder_a1.jpeg" 
+            difficulty='Advanced'
+            price='$48 CAD'
+            url='cardholderworkshop'
+            />
+            <WorkshopCard 
+            title="Card Holder B" 
+            image="/images/cardholder_b1.jpg" 
+            difficulty='Advanced'
+            price='$53 CAD'
+            url='/'
+            />
+            <WorkshopCard 
+            title="Card Holder C" 
+            image="/images/cardholder_c1.jpeg" 
+            difficulty='Advanced'
+            price='$99 CAD'
+            url='/'
+            />
+            <WorkshopCard 
+            title="Bell" 
+            image="/images/bell1.jpeg" 
+            difficulty='Advanced'
+            price='$33 CAD'
+            url='/'
             />
           </div>
         </section>
@@ -84,7 +146,30 @@ export default function Home() {
           <div className="w-full max-w-2xl px-6 mx-4 text-center">
             <h2 className="text-3xl mb-4">Contact Us</h2>
             <p>Reach out to us and let us know if there is anything we can do for you.</p>
-            <form className="mt-6">
+            <form className="mt-6" 
+            action={async (formData) => {
+              try {
+                const name = formData.get("name")?.toString();
+                const email = formData.get("email")?.toString();
+                const message = formData.get("message")?.toString();
+      
+                if (!name || !email || !message) {
+                  throw new Error("All fields are required.");
+                }
+      
+                await createContact(new FormData(), {
+                  name,
+                  email,
+                  message,
+                });
+      
+                alert("Message sent successfully!");
+              } catch (error) {
+                console.error("Submission error:", error);
+                alert("An error occurred.");
+              }
+            }}
+            >
               <div className="mb-4 flex flex-col items-start">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
                 <input
@@ -121,7 +206,7 @@ export default function Home() {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="mt-4 px-6 py-2 bg-[#42563b] text-white rounded-md hover:bg-[#5a7853] transition"
+                  className="mt-4 px-6 py-2 bg-[#006340] text-white rounded-md hover:bg-[#5a7853] transition"
                 >
                   Send Message
                 </button>
